@@ -144,6 +144,7 @@ define tomcat::instance($ensure="present",
 
   if defined(Class["Tomcat::Package::v5-5"]) {
     $catalinahome = $operatingsystem ? {
+      CentOS => "/usr/share/tomcat5",
       RedHat => "/usr/share/tomcat5",
       Debian => "/usr/share/tomcat5.5",
       Ubuntu => "/usr/share/tomcat5.5",
@@ -152,7 +153,8 @@ define tomcat::instance($ensure="present",
 
   if defined(Class["Tomcat::Package::v6"]) {
     $catalinahome = $operatingsystem ? {
-      #TODO: RedHat => "/usr/share/tomcat6",
+      CentOS => "/usr/share/tomcat6",
+      RedHat => "/usr/share/tomcat6",
       Debian => "/usr/share/tomcat6",
       Ubuntu => "/usr/share/tomcat6",
     }
@@ -166,6 +168,9 @@ define tomcat::instance($ensure="present",
   # Define default JAVA_HOME used in tomcat.init.erb
   if $java_home == "" {
     case $operatingsystem {
+      CentOS: {
+        $javahome = "/usr/lib/jvm/java"
+      }
       RedHat: {
         $javahome = "/usr/lib/jvm/java"
       }
