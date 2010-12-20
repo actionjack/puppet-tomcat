@@ -21,6 +21,7 @@ Usage:
 class tomcat::package::v5-5 inherits tomcat {
 
   $tomcat = $operatingsystem ? {
+    CentOS => "tomcat5",
     RedHat => "tomcat5",
     Debian => "tomcat5.5",
     Ubuntu => "tomcat5.5",
@@ -30,7 +31,7 @@ class tomcat::package::v5-5 inherits tomcat {
 
   case $operatingsystem {
 
-    RedHat: {
+    CentOS,RedHat: {
       file { "/usr/share/tomcat5/bin/catalina.sh":
         ensure => link,
         target => "/usr/bin/dtomcat5",
@@ -48,6 +49,7 @@ class tomcat::package::v5-5 inherits tomcat {
 
   File["commons-logging.jar"] {
     path => $operatingsystem ? {
+      CentOS  => "/var/lib/tomcat5/common/lib/commons-logging.jar",
       RedHat  => "/var/lib/tomcat5/common/lib/commons-logging.jar",
       #Debian => TODO,
     },
@@ -55,6 +57,7 @@ class tomcat::package::v5-5 inherits tomcat {
 
   File["log4j.jar"] {
     path => $operatingsystem ? {
+      CentOS  => "/var/lib/tomcat5/common/lib/log4j.jar",
       RedHat  => "/var/lib/tomcat5/common/lib/log4j.jar",
       #Debian => TODO,
     },
@@ -62,6 +65,7 @@ class tomcat::package::v5-5 inherits tomcat {
 
   File["log4j.properties"] {
     path => $operatingsystem ? {
+      CentOS  => "/var/lib/tomcat5/common/classes/log4j.properties",
       RedHat  => "/var/lib/tomcat5/common/classes/log4j.properties",
       #Debian => TODO,
     },
