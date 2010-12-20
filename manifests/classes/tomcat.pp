@@ -18,7 +18,7 @@ class tomcat {
 
   case $operatingsystem {
     CentOS,RedHat: {
-      package { ["log4j", "jakarta-commons-logging"]: ensure => present }
+      package { ["log4j", "jakarta-commons-logging", "redhat-lsb"]: ensure => present }
     }
     Debian,Ubuntu: {
       package { ["liblog4j1.2-java", "libcommons-logging-java"]: ensure => present }
