@@ -22,6 +22,7 @@ class tomcat::package {
       Debian => "-Dcatalina.base=/var/lib/tomcat",
       Ubuntu => "-Dcatalina.base=/var/lib/tomcat",
       RedHat => "-Dcatalina.base=/usr/share/tomcat",
+      CentOS => "-Dcatalina.base=/usr/share/tomcat",
     },
     require => Package["tomcat"],
   }
