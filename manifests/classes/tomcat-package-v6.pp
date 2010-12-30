@@ -20,7 +20,8 @@ Usage:
 class tomcat::package::v6 inherits tomcat {
 
   $tomcat = $operatingsystem ? {
-    #TODO: RedHat => "tomcat6",
+    CentOS => "tomcat6",
+    RedHat => "tomcat6",
     Debian => "tomcat6",
     Ubuntu => "tomcat6",
   }
@@ -40,21 +41,24 @@ class tomcat::package::v6 inherits tomcat {
 
   File["commons-logging.jar"] {
     path => $operatingsystem ? {
-      #RedHat => TODO,
+      CentOS  => "/usr/share/tomcat6/lib/commons-logging.jar",
+      RedHat  => "/usr/share/tomcat6/lib/commons-logging.jar",
       Debian  => "/usr/share/tomcat6/lib/commons-logging.jar",
     },
   }
 
   File["log4j.jar"] {
     path => $operatingsystem ? {
-      #RedHat => TODO,
+      CentOS  => "/usr/share/tomcat6/lib/log4j.jar",
+      RedHat  => "/usr/share/tomcat6/lib/log4j.jar",
       Debian  => "/usr/share/tomcat6/lib/log4j.jar",
     },
   }
 
   File["log4j.properties"] {
     path => $operatingsystem ? {
-      #RedHat => TODO,
+      CentOS  => "/usr/share/tomcat6/lib/log4j.properties",
+      RedHat  => "/usr/share/tomcat6/lib/log4j.properties",
       Debian  => "/usr/share/tomcat6/lib/log4j.properties",
     },
   }
